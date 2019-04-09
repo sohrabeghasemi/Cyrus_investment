@@ -32,6 +32,17 @@ class project_cyrus(models.Model):
 
 class personel_cyrus(models.Model):
 
+	SEMAT_CHOICES = (
+		('modir_project', 'مدیر پروژه'),
+		('mohandes', 'مهندس '),
+		('ranande', 'راننده'),
+		('modir_hesabdar', 'مدیر حسابداری'),
+		('anbardar', 'انباردار'),
+		('tarrah', 'معمار پروژه'),
+		('monshi', 'منشی'),
+		('vakil', 'وکیل'),
+	)
+
 	MAGHTAE_TAHSILI_CHOICES = (
 		('ci', 'سیکل'),
 		('dp', 'دیپلم'),
@@ -81,16 +92,12 @@ class kagar_cyrus(models.Model):
 	meliyat = models.CharField('ملیت', max_length=2, choices=MELIYAT_CHOICES)
 	vaziyet_kari = models.CharField('وضعیت کاری', max_length=3, choices=VAZIYAT_KARI_CHOICES)
 	moaref_kargar = models.ForeignKey(personel_cyrus, 'معرف', null=True)
-	address = models.CharField('آدرس', max_length=300, help_text='آدرس را در این قسمت وارد کنید', null=True, blank=True)
+	address = models.CharField('آدرس', max_length=300, help_text='آدرس را در این قسمت وارد کنید')
 	tel_cellphone = models.CharField('شماره تلفن همراه', max_length=11,
 									help_text='لطفا شماره تلفن همراه را در این حالت وارد کنید 09113910400',
-									null=True,
-									blank=True,
 									)
 	tel_sabet = models.CharField('شماره تلفن ثابت', max_length=11,
 									help_text='لطفا شماره تلفن همراه را در این حالت وارد کنید 01154633340',
-								 	null=True,
-								 	blank=True,
 									)
 	created = models.DateField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
