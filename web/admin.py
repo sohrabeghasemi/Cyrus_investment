@@ -19,8 +19,8 @@ class Personel_cyrus_Admin(admin.ModelAdmin):
 
 @admin.register(models.kagar_cyrus)
 class PersonelAdmin(admin.ModelAdmin):
-	list_display = ('l_name', 'f_name')
-	fields = (('f_name','l_name'), ('meliyat', 'vaziyet_kari'), ('vorud_date', 'moaref_kargar'))
+	#list_display = ('l_name', 'f_name')
+	fields = (('f_name', 'l_name'), ('meliyat', 'vaziyet_kari'),'address', ('tel_cellphone','tel_sabet'),'moaref_kargar')
 
 
 @admin.register(models.project_cyrus)
