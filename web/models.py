@@ -66,6 +66,8 @@ class personel_cyrus(models.Model):
 									default='dp',
 									)
 	reshte_tahsili = models.ForeignKey(reshte, 'رشته تحصیلی')
+	semat = models.CharField('سمت در پروژه', choices=SEMAT_CHOICES, max_length=50,
+							 null=True, blank=True,help_text='سمت را در این قسمت انتخاب کنید')
 
 
 	class Meta:

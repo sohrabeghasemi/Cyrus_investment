@@ -12,9 +12,9 @@ class Reshte_name_Admin(admin.ModelAdmin):
 @admin.register(models.personel_cyrus)
 class Personel_cyrus_Admin(admin.ModelAdmin):
 	fields = (('f_name', 'l_name'),
-			  'meli_code', 'address',
+			  ('meli_code', 'address'),
 			  ('celphone_one', 'tel_sabet'),
-			  ('maghtae_tahsili', 'reshte_tahsili'))
+			  ('maghtae_tahsili', 'reshte_tahsili', 'semat'))
 
 
 @admin.register(models.kagar_cyrus)
