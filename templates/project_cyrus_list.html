@@ -1,0 +1,11 @@
+{% extends 'parent/main.html' %}
+{% block body %}
+
+    <h2 style="color: dodgerblue"> We have {{ p_count }} projects</h2>
+    <ul>
+        {% for project in p_list %}
+            <li> name : {{ project.name_project }}, address : {{ project.address_project }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

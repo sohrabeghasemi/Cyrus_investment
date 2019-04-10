@@ -9,18 +9,31 @@ class Reshte_name_Admin(admin.ModelAdmin):
 	pass
 
 
+class kargar_inline(admin.TabularInline):
+	model = models.kagar_cyrus
+
 @admin.register(models.personel_cyrus)
 class Personel_cyrus_Admin(admin.ModelAdmin):
-	fields = (('f_name', 'l_name'),
-			  ('meli_code', 'address'),
-			  ('celphone_one', 'tel_sabet'),
-			  ('maghtae_tahsili', 'reshte_tahsili', 'semat'))
+	inlines = [kargar_inline]
+
+	fields = (
+		('f_name', 'l_name'),
+		('meli_code', 'address'),
+		('celphone_one', 'tel_sabet'),
+		('maghtae_tahsili', 'reshte_tahsili', 'semat')
+	)
 
 
 @admin.register(models.kagar_cyrus)
 class PersonelAdmin(admin.ModelAdmin):
 	#list_display = ('l_name', 'f_name')
-	fields = (('f_name', 'l_name'), ('meliyat', 'vaziyet_kari'),'address', ('tel_cellphone','tel_sabet'),'moaref_kargar')
+	fields = (
+		('f_name', 'l_name'),
+		('meliyat', 'vaziyet_kari'),
+		'address',
+		('tel_cellphone', 'tel_sabet'),
+		'moaref_kargar',
+	)
 
 
 @admin.register(models.project_cyrus)

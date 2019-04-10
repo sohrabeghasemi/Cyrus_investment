@@ -1,0 +1,14 @@
+{% extends 'parent/main.html' %}
+{% block body %}
+
+    <h3 style="color: brown">This is the web page we have {{ kargarcount }} kargar</h3>
+    {% if kargars %}
+        <ul>
+            {% for kargar in kargars %}
+                <li> <a href="{% url 'web:kargar_detail' kargar.id %}"> name : {{ kargar.f_name }} Last name : {{ kargar.l_name }} </a> </li>
+
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

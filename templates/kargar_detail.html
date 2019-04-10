@@ -1,0 +1,11 @@
+{% extends 'parent/main.html' %}
+{% block body %}
+
+    <h1 style="color: brown">This is the kargar detail page</h1>
+    <h2 style="color: darkcyan">name : {{ kargar_pick.f_name }} last name : {{ kargar_pick.l_name }}</h2>
+    {{ kargar_pick.meliyat }}<br>
+    {{ kargar_pick.address }}<br>
+    {{ kargar_pick.moaref_kargar }} <br>
+    {{ kargar_pick.tel_cellphone }}
+
+{% endblock %}
