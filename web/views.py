@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from . import models
 from django.contrib.auth.decorators import login_required
+from . import forms
 
 # Create your views here.
 
@@ -19,6 +20,7 @@ def web(request):
 	}
 	return render(request, 'web.html', context)
 
+
 @login_required
 def kargar_detail(request, kargar_id):
 	kargar_detail_list =get_object_or_404(models.kagar_cyrus, pk=kargar_id)
@@ -26,6 +28,7 @@ def kargar_detail(request, kargar_id):
 		'kargar_pick': kargar_detail_list,
 	}
 	return render(request, 'kargar_detail.html', context)
+
 
 def project_list(request):
 	p_count = models.project_cyrus.objects.count()
@@ -36,3 +39,18 @@ def project_list(request):
 	}
 
 	return render(request, 'project_cyrus_list.html', context)
+
+
+def kargar_input_form(request):
+
+	if request.method == 'POST':
+		form = forms.kargar_input_form(request.POST)
+		if form.is_valid():
+			print('VALID')
+
+	form = forms.kargar_input_form()
+	context = {
+		'form': form
+	}
+	return render(request, 'kargar_input_form.html', context)
+
