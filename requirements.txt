@@ -1,4 +1,6 @@
 Django==2.2
+django-jalali==3.1.0
+jdatetime==3.2.0
 Jinja2==2.10.1
 MarkupSafe==1.1.1
 pytz==2018.9
