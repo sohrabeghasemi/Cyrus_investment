@@ -1,6 +1,8 @@
 from django.db import models
 import uuid
-from django.utils import timezone
+from django_jalali.db import models as jmodels
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 # Create your models here.
 
 
@@ -27,7 +29,7 @@ class project_cyrus(models.Model):
 		verbose_name_plural = 'لیست پروژه ها'
 
 	def __str__(self):
-		return 'پروژه :{} ,  آدرس :{}'.format(self.name_project, self.address_project)
+		return '{} '.format(self.name_project)
 
 
 class personel_cyrus(models.Model):
@@ -54,6 +56,7 @@ class personel_cyrus(models.Model):
 
 	f_name = models.CharField('نام', max_length=200)
 	l_name = models.CharField('نام خانوادگی', max_length=250)
+	birth_day = jmodels.jDateField('تاریخ تولد', null=True, blank=True)
 	meli_code = models.CharField('کد ملی', max_length=10)
 	address = models.CharField('آدرس', max_length=300)
 	celphone_one = models.CharField('شماره تلفن همراه', max_length=11,
@@ -75,7 +78,7 @@ class personel_cyrus(models.Model):
 		verbose_name_plural = 'لیست پرسنل'
 
 	def __str__(self):
-		return '{} {}'.format(self.f_name, self.l_name)
+		return '{} {}, {}'.format(self.f_name, self.l_name, self.birth_day)
 
 
 class kagar_cyrus(models.Model):
@@ -91,6 +94,8 @@ class kagar_cyrus(models.Model):
 	)
 	f_name = models.CharField('نام', max_length=200)
 	l_name = models.CharField('نام خانوادگی', max_length=250)
+	meli_code = models.CharField('کد ملی', max_length=10, help_text='ورود کد ملی ۱۰ رقمی', null=True, blank=True)
+	birthday = jmodels.jDateField('تاریخ تولد', help_text='تاریخ تولد را وارد کنید', null=True, blank=True)
 	meliyat = models.CharField('ملیت', max_length=2, choices=MELIYAT_CHOICES)
 	vaziyet_kari = models.CharField('وضعیت کاری', max_length=3, choices=VAZIYAT_KARI_CHOICES)
 	moaref_kargar = models.ForeignKey(personel_cyrus, 'معرف', null=True)
@@ -110,4 +115,43 @@ class kagar_cyrus(models.Model):
 
 	def __str__(self):
 		return 'کد کارگر :{} ,  نام : {} {} , {} , {}'.format(self.id, self.f_name, self.l_name, self.vaziyet_kari, self.meliyat)
+
+
+class sabteruz(models.Model):
+
+	tarikh = jmodels.jDateField('تاریخ', help_text='تاریخ روز کاری مورد نظر را مشخص کنید')
+	project = models.ForeignKey(project_cyrus, on_delete=models.DO_NOTHING, help_text='پروژه مورد نظر را انتخاب کنید')
+	user = models.ForeignKey(get_user_model(), on_delete=models.DO_NOTHING)
+	dsc = models.CharField('توضیحات', max_length=200, null=True, blank=True)
+
+	class Meta:
+		verbose_name = 'ثبت روز کاری'
+		verbose_name_plural = 'لیست روزهای کاری'
+
+	def __str__(self):
+		return 'تاریخ: {}/{}/{} پروژه: {} کاربر: {}'.format(self.tarikh.year, self.tarikh.month, self.tarikh.day,
+															self.project, self.user)
+
+
+class karkard(models.Model):
+
+	VAZIYAT_KARI_CHOICES = (
+		('krg', 'کارگر'),
+		('ost', 'استادکار'),
+	)
+
+	ruze_kari = models.ForeignKey(sabteruz, on_delete=models.DO_NOTHING, help_text='روز کاری را با دقت انتخاب کنید')
+	kargar = models.ForeignKey(kagar_cyrus, on_delete=models.DO_NOTHING, help_text='کارگر را از لیست انتخاب کنید')
+	vaziyat = models.CharField('وضعیت کاری در روز', max_length=3, choices=VAZIYAT_KARI_CHOICES, help_text='مشخص کنید که کارگر در امروز چه وضعیتی داشته')
+	desc = models.CharField('شرح کار', max_length=500)
+
+	class Meta:
+		verbose_name = 'ثبت کارکرد'
+		verbose_name_plural = 'لیست کارکرد ها'
+
+	def __str__(self):
+		return '{} , {}, {}'.format(self.ruze_kari, self.kargar, self.vaziyat)
+
+
+
 
