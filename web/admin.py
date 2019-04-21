@@ -34,7 +34,8 @@ class Personel_cyrus_Admin(admin.ModelAdmin):
 
 @admin.register(models.kagar_cyrus)
 class PersonelAdmin(admin.ModelAdmin):
-	list_display = ('l_name', 'f_name', 'meliyat','birthday', 'tel_cellphone', 'address', 'vaziyet_kari')
+	#list_display = ('l_name', 'f_name')
+	list_display = ( 'l_name', 'f_name', 'id', 'meliyat','birthday', 'tel_cellphone', 'address', 'vaziyet_kari')
 	fields = (
 		('f_name', 'l_name'),
 		('meliyat', 'vaziyet_kari', 'meli_code', 'birthday'),
@@ -58,8 +59,7 @@ class karkardinline(admin.TabularInline):
 class sabteruzAdmin(admin.ModelAdmin):
 	inlines = [karkardinline]
 	fields = (('tarikh', 'project', 'user'), 'dsc')
-
-
+	list_filter = ('tarikh', 'project', 'user')
 
 
 
