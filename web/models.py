@@ -121,7 +121,7 @@ class sabteruz(models.Model):
 
 	tarikh = jmodels.jDateField('تاریخ', help_text='تاریخ روز کاری مورد نظر را مشخص کنید')
 	project = models.ForeignKey(project_cyrus, on_delete=models.DO_NOTHING, help_text='پروژه مورد نظر را انتخاب کنید')
-	user = models.ForeignKey(get_user_model(), on_delete=models.DO_NOTHING)
+	user = models.ForeignKey(User, default=get_user_model(), on_delete=models.DO_NOTHING)
 	dsc = models.CharField('توضیحات', max_length=200, null=True, blank=True)
 
 	class Meta:
