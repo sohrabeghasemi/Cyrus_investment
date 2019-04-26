@@ -49,10 +49,7 @@ def project_list(request):
 
 def kargar_input_form(request):
 
-	if request.method == 'POST':
-		form = forms.kargar_input_form(request.POST)
-		if form.is_valid():
-			print('VALID')
+
 
 	form = forms.kargar_input_form()
 	context = {
