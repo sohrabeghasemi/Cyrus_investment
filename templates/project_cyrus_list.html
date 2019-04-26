@@ -2,9 +2,15 @@
 {% block body %}
 
     <h2 style="color: dodgerblue"> We have {{ p_count }} projects</h2>
-    <ul>
+    <ul style="color: cornflowerblue">
         {% for project in p_list %}
-            <li> name : {{ project.name_project }}, address : {{ project.address_project }}</li>
+            <li style="color: darkred">  نام پروژه:   {{ project.name_project }}  </li>
+            <ul>
+                <li> آدرس : {{ project.address_project }}</li>
+                <li> تعداد واحد ها : {{ project.units_project }}</li>
+                <li> توضیحات : {{ project.desc_project }}</li> <br>
+
+            </ul>
         {% endfor %}
     </ul>
 

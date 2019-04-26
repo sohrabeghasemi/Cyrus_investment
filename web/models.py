@@ -71,7 +71,9 @@ class personel_cyrus(models.Model):
 									)
 	reshte_tahsili = models.ForeignKey(reshte, 'رشته تحصیلی')
 	semat = models.CharField('سمت در پروژه', choices=SEMAT_CHOICES, max_length=50,
-							 null=True, blank=True,help_text='سمت را در این قسمت انتخاب کنید')
+							 null=True,
+							 blank=True,help_text='سمت را در این قسمت انتخاب کنید',
+							 )
 
 
 	class Meta:
@@ -122,7 +124,11 @@ class sabteruz(models.Model):
 	current_user = get_user_model()
 	tarikh = jmodels.jDateField('تاریخ', help_text='تاریخ روز کاری مورد نظر را مشخص کنید')
 	project = models.ForeignKey(project_cyrus, on_delete=models.DO_NOTHING, help_text='پروژه مورد نظر را انتخاب کنید')
-	user = models.ForeignKey(get_user_model(), on_delete=models.DO_NOTHING,null=True)
+	user = models.ForeignKey(get_user_model(),
+							on_delete=models.DO_NOTHING,
+							null=True,
+							help_text='در این قسمت نام کاربری خود را انتخاب کنید',
+							 )
 	dsc = models.CharField('توضیحات', max_length=200, null=True, blank=True)
 
 	class Meta:

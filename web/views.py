@@ -2,12 +2,18 @@ from django.shortcuts import render, get_object_or_404
 from . import models
 from django.contrib.auth.decorators import login_required
 from . import forms
+from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
 
 def index(request):
-	return render(request, 'index.html')
+	user = User
+	context = {
+		'user': user,
+	}
+	return render(request, 'index.html', context)
 
 
 @login_required

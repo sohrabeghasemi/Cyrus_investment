@@ -5,7 +5,7 @@
     {% if kargars %}
         <ul>
             {% for kargar in kargars %}
-                <li> <a href="{% url 'web:kargar_detail' kargar.id %}"> name : {{ kargar.f_name }} Last name : {{ kargar.l_name }} </a> </li>
+                <li> <a style="color: darkblue" href="{% url 'web:kargar_detail' kargar.id %}"> نام : {{ kargar.f_name }}  {{ kargar.l_name }} </a> </li>
 
             {% endfor %}
         </ul>

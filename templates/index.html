@@ -1,7 +1,9 @@
 {% extends 'parent/main.html' %}
 {% block body %}
 
-    <h2>This is home page baby</h2>
-    <a href="/admin">Login</a>
+    <h2>This is home page baby {{ user.first_name}} !</h2>
+    <a href="/admin">Login</a><br>
+    <a href="/web">Kargars List</a><br>
+    <a href="/web/plist">Projects List</a>
 
 {% endblock %}
