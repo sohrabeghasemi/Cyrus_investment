@@ -12,6 +12,7 @@ def index(request):
 	user = User
 	context = {
 		'user': user,
+		'request': request.META['HTTP_USER_AGENT'],
 	}
 	return render(request, 'index.html', context)
 

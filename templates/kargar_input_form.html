@@ -9,7 +9,7 @@
 <body>
 <form action="POST">
     {% csrf_token %}
-    {{ form }}
+    {{ form.l_name.title }}
     <button type="submit">Submit</button>
 </form>
 </body>
