@@ -1,9 +1,8 @@
 {% extends 'parent/main.html' %}
 {% block body %}
 
-    <h2>This is home page baby {{ request.path }}</h2>
-    <h2> {{ request }}</h2>
-    <h3>{{ remote_adder }}</h3>
+    <h2>This is home page baby </h2>
+    <h2> {{ request.build_absolute_uri }}</h2>
     <a href="/admin"> Login </a><br>
     <a href="/web">Kargar List</a>
 {% endblock %}
