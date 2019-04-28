@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="with= device=with, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>kargar input form</title>
-</head>
-<body>
+{% extends 'parent/main.html' %}
+{% block body %}
 <form action="POST">
+    <h3 style="color: brown">Kargar Input Form : {{ user.count}}</h3>
     {% csrf_token %}
-    {{ form.l_name.title }}
+    {{ form }}<br>
     <button type="submit">Submit</button>
 </form>
-</body>
-</html>
+{% endblock %}

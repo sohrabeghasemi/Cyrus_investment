@@ -44,17 +44,15 @@ def project_list(request):
 		'p_count': p_count,
 		'p_list': p_list,
 	}
-
 	return render(request, 'project_cyrus_list.html', context)
 
 
 def kargar_input_form(request):
-
-
-
 	form = forms.kargar_input_form()
+	user = User.objects.all()
 	context = {
-		'form': form
+		'form': form,
+		'user': user,
 	}
 	return render(request, 'kargar_input_form.html', context)
 
