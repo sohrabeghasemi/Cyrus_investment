@@ -1,9 +1,16 @@
 {% extends 'parent/main.html' %}
 {% block body %}
 <form action="POST">
-    <h3 style="color: brown">Kargar Input Form : {{ user.count}}</h3>
+
+    {% if user %}
+        <h5 style="color: brown">User logged in is : {{ user.first_name }}{{ user.last_name }}</h5>
+    {% else %}
+            <h5 style="color: brown">Not logged in yet <a style="color: dodgerblue" href="/admin">Login</a> </h5>
+    {% endif %}
+    <h3 style="color: brown">Kargar Input Form </h3>
     {% csrf_token %}
     {{ form }}<br>
     <button type="submit">Submit</button>
+
 </form>
 {% endblock %}

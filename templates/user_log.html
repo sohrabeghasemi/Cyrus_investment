@@ -1,0 +1,16 @@
+{% extends 'parent/main.html' %}
+{% block body %}
+
+    {% if user %}
+        <ul>
+            {% for per in user_permission %}
+
+                <li style="color: darkcyan"> {{ per }}</li>
+
+            {% endfor %}
+
+        </ul>
+    {% endif %}
+
+
+{% endblock %}

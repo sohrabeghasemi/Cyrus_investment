@@ -1,8 +1,14 @@
 {% extends 'parent/main.html' %}
 {% block body %}
 
+    {% if user %}
+        <h6 style="color: darkcyan">login user : {{ user.first_name }} {{ user.last_name }} user name:{{ user.username }} <a style="color: dodgerblue" href="/web/user_log">User Log</a> </h6>
+    {% else %}
+        <h6 style="color: brown; content: normal; margin-right: initial"> Not login yet |  <a style="color: dodgerblue" href="/admin">Login</a></h6>
+    {% endif %}
     <h2>This is home page baby </h2>
     <h2> {{ request.build_absolute_uri }}</h2>
     <a href="/admin"> Login </a><br>
-    <a href="/web">Kargar List</a>
+    <a href="/web">Kargar List</a><br>
+
 {% endblock %}

@@ -3,13 +3,17 @@ from . import models
 from django.contrib.auth.decorators import login_required
 from . import forms
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
+
 
 # Create your views here.
 
 
 def index(request):
-	user = User
+	try:
+		user = User.objects.get(username=request.user.username)
+	except User.DoesNotExist:
+		user = False
+
 	context = {
 		'user': user,
 		'request': request
@@ -49,10 +53,30 @@ def project_list(request):
 
 def kargar_input_form(request):
 	form = forms.kargar_input_form()
-	user = User.objects.all()
+	try:
+		user = User.objects.get(username=request.user.username)
+	except User.DoesNotExist:
+		user = False
+
 	context = {
 		'form': form,
 		'user': user,
 	}
 	return render(request, 'kargar_input_form.html', context)
+
+
+def user_log(request):
+	try:
+		user = User.objects.get(username=request.user.username)
+		user_log_list = user.get_all_permissions()
+	except User.DoesNotExist:
+		user = False
+
+	context = {
+		'user': user,
+		'user_permission': user_log_list,
+
+	}
+
+	return render(request, 'user_log.html', context)
 

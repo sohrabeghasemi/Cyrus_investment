@@ -9,5 +9,6 @@ urlpatterns = [
 	path('web/', views.web, name='web'),
 	path('web/<int:kargar_id>', views.kargar_detail, name='kargar_detail'),
 	path('web/plist/', views.project_list, name='p_list'),
-	path('web/kargar_input/', views.kargar_input_form, name='kargar_input_form')
+	path('web/kargar_input/', views.kargar_input_form, name='kargar_input_form'),
+	path('web/user_log/', views.user_log, name='user_log'),
 ]
